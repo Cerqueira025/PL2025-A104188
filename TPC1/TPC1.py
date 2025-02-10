@@ -1,4 +1,5 @@
-import re
+import csv
+
 def somador(texto):
   contador = 0
   i = 0
@@ -8,7 +9,6 @@ def somador(texto):
     valor = 0
     if texto[i] == '=':
       print(contador)
-    #if re.findall(texto[i], [0-9]) != "":
     if texto[i] in numeros and stop == 0:
       while texto[i] in numeros:
         valor = valor * 10 + int(texto[i])
@@ -22,6 +22,7 @@ def somador(texto):
       i+=2
     else:
       i = i+1
+  return contador
 
 def somadorR(texto):
   contador = 0
@@ -45,6 +46,21 @@ def somadorR(texto):
       i+=2
     else:
       i = i+1
+  return contador
+
+def teste():
+  with open('testes.csv', mode ='r', encoding="utf-8")as file:
+    ficheiro = csv.reader(file)
+    i = 1
+    for linha in ficheiro:
+        texto = linha[0]
+        resultado = int(linha[1])
+        if(somador(texto)!= resultado):
+          print("função errada para a entrada ", i)
+          print("resultado esperado: ", resultado)
+          print("resultado obtido: ", somador(texto))
+        i+=1
+
 
 def main():
   l1 = "adgEGmesADVZomdb45dsfbgfnv"
@@ -58,5 +74,7 @@ def main():
   somador(texto)
   print("somadorR:")
   somadorR(texto)
+  print("testes:")
+  teste()
 
 main()
