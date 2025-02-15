@@ -5,51 +5,37 @@ def somador(texto):
   i = 0
   numeros = "0123456789"
   stop = False
-  while i < len(texto):
-    valor = 0
-    if texto[i] == '=':
-      print(contador)
-    if texto[i] in numeros and stop == 0:
-      while texto[i] in numeros:
-        valor = valor * 10 + int(texto[i])
-        i +=1
-      contador += valor
-    if texto[i] in "Oo" and texto[i+1] in "Nn":
-      stop = False
-      i+=1
-    if texto[i] in "Oo" and (texto[i+1] and texto[i+2]) in "Ff":
-      stop = True
-      i+=2
-    else:
-      i = i+1
-  return contador
+  frase = ""
 
-def somadorR(texto):
-  contador = 0
-  i = 0
-  numeros = "0123456789"
-  stop = False
   while i < len(texto):
     valor = 0
+    frase += texto[i]
     if texto[i] == '=':
-      print(contador)
+      print(frase)
+      print(">>", contador)
+      frase = ""
     if texto[i] in numeros and stop == 0:
       while texto[i] in numeros:
         valor = valor * 10 + int(texto[i])
         i +=1
+        frase+=texto[i]
       contador += valor
     if texto[i] in "Oo" and texto[i+1] in "Nn":
       stop = False
+      frase+=texto[i+1]
       i+=1
     if texto[i] in "Oo" and (texto[i+1] and texto[i+2]) in "Ff":
       stop = True
+      frase+=texto[i+1]
       i+=2
     else:
       i = i+1
+  print(frase)
+  print(">>", contador)
   return contador
 
 def teste():
-  with open('testes.csv', mode ='r', encoding="utf-8")as file:
+  with open(r'C:\Users\Cerqueira\OneDrive\Área de Trabalho\PL\PL2025-A104188\TPC1\testes.csv', mode ='r', encoding="utf-8")as file:
     ficheiro = csv.reader(file)
     i = 1
     for linha in ficheiro:
@@ -63,18 +49,23 @@ def teste():
 
 
 def main():
-  l1 = "adgEGmesADVZomdb45dsfbgfnv"
-  l2 = "dzbaSVdDVfbd2025-02-07sfba"
-  l3 = "sd=svsaOFfwvsAVDsgddfbsbdb"
-  l4 = "dngfSSDsf789eshREEhdh43gff"
-  l5 = "ensAFdfbonabfdxs2nxggnSDGf"
-  l6 = "wegaHFETSGF5ebfd=dfbxnFFFd"
-  texto = l1+l2+l3+l4+l5+l6
+  texto =(
+    "adgEGmesADVZomdb45dsfbgfnv"
+    "dzbaSVdDVfbd2025-02-07sfba"
+    "sd=svsaOFfwvsAVDsgddfbsbdb"
+    "dngfSSDsf789eshREEhdh43gff"
+    "ensAFdfbonabfdxs2nxggnSDGf"
+    "wegaHFETSGF5ebfd=dfbxnFFFd"
+  )
   print("somador:")
   somador(texto)
-  print("somadorR:")
-  somadorR(texto)
-  print("testes:")
+
+  with open(r'C:\Users\Cerqueira\OneDrive\Área de Trabalho\PL\PL2025-A104188\TPC1\texto1.txt', mode ='r', encoding="utf-8")as file:
+      texto1 = file.read()
+  print("\nsomador:")
+  somador(texto1)
+
+  print("\ntestes:")
   teste()
 
 main()
