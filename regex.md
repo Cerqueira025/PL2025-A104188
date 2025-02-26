@@ -59,3 +59,10 @@
   >>[(a,b),(c,d)]
   ```
   Retorna uma **lista** de todas as ocorrências no **'text'** dos grupos de captura
+
+
+## Links 
+ Aqui está o link para o caderno da UC: [caderno da UC](https://docs.google.com/document/d/16ajGsYV70V3rO7IiPGfqfwc89R95miCqW1q-CVaGcB0/edit?tab=t.0#heading=h.ne5koqb48aes)
+
+## Imagens
+Como se vê na imagem seguinte: ![imagem dum coelho](http://www.coellho.com)

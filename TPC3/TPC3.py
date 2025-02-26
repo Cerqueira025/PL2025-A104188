@@ -34,6 +34,15 @@ def listas(text, i, n_text):
   n_text += "</ol>\n"
   return i, n_text
 
+##Link
+def link(text):
+  padrao = r'\[([^\\]*)\]\(([^\)]*)\)'
+  return re.sub(padrao, r'<a href="\2">\1</a>', text)
+
+##Imagem
+def imagem(text):
+  padrao = r'\!\[([^\\]*)\]\(([^\)]*)\)'
+  return re.sub(padrao, r'<img src="\2" alt="\1"/>', text)
 
 ####################
 # FUNCAO PRINCIPAL #
@@ -64,6 +73,13 @@ def markDownToHTML(text):
     #Lista
     if "1." in linha:
       i , n_text = listas(text, i, n_text)
+
+    #Imagem
+    if "![" in linha:
+      n_text += imagem(linha) + '\n'
+    #Link
+    elif "[" in linha:
+      n_text += link(linha) + '\n'
     
     i+=1
   return n_text
