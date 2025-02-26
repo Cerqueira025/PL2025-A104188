@@ -9,10 +9,6 @@ def titulos(text):
   i = len(matches.group(1))
   return "<h"+ str(i) +">"+ matches.group(2)+ "</h"+str(i)+">"
 
-## Listas
-#def listas(text, i, n_text):
-
-
 ## Bold
 def bold(text):
   padrao = r'\*\*([^\*]+)\*\*'
@@ -22,6 +18,22 @@ def bold(text):
 def italico(text):
   padrao = r'\*([^\*]+)\*'
   return re.sub(padrao, r'<i>\1</i>', text) 
+
+## Listas
+def listas(text, i, n_text):
+  n_text += "<ol>\n"
+  
+  while(i < len(text)):
+    padrao = r'^[\s]*\d.\s*(.*)'
+    match = re.search(padrao, text[i].strip()) 
+    if not match:
+      break
+    n_text += "<li>"+ match.group(1)+"</li>\n" 
+    i+=1
+  print("Saí do loop!\n")
+  n_text += "</ol>\n"
+  return i, n_text
+
 
 ####################
 # FUNCAO PRINCIPAL #
@@ -44,17 +56,20 @@ def markDownToHTML(text):
 
     #Bold
     if "**" in linha:
-      print(linha)
       n_text += bold(linha) +'\n'
     #Italico
     elif "*" in linha:
       n_text += italico(linha) +'\n'
+
+    #Lista
+    if "1." in linha:
+      i , n_text = listas(text, i, n_text)
     
     i+=1
   return n_text
 
 def main():
-  with open(r'C:\Users\Cerqueira\OneDrive\Área de Trabalho\PL\regex.md', mode='r', encoding='utf-8') as file:
+  with open(r'C:\Users\Cerqueira\OneDrive\Área de Trabalho\PL\PL2025-A104188\regex.md', mode='r', encoding='utf-8') as file:
     text = file.read().splitlines()
   print("\nRESULTADO:\n" + markDownToHTML(text))
 
