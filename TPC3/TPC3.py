@@ -7,42 +7,55 @@ def titulos(text):
   if not matches:
     return text
   i = len(matches.group(1))
-  return "<h"+ str(i) +">"+ matches.group(2)+ "</h"+str(i)+">"+'\n'
+  return "<h"+ str(i) +">"+ matches.group(2)+ "</h"+str(i)+">"
+
+## Listas
+#def listas(text, i, n_text):
+
 
 ## Bold
 def bold(text):
-  return "<b>"+ text.strip()+ "</b>" 
+  padrao = r'\*\*([^\*]+)\*\*'
+  return re.sub(padrao, r'<b>\1</b>', text) 
 
 ## Italico
 def italico(text):
-  return "<i>"+ text.strip()+ "</i>" 
+  padrao = r'\*([^\*]+)\*'
+  return re.sub(padrao, r'<i>\1</i>', text) 
 
 ####################
 # FUNCAO PRINCIPAL #
 ####################
 def markDownToHTML(text):
   n_text = ""
-  for linha in text:
-    #print("Linha: "+ linha)
-    if not linha:  # Se a linha estiver vazia
+  i = 0
+  while(i<len(text)):
+    linha = text[i]
+    
+    #Linha vazia
+    if not linha:
+      i+=1
+      n_text+='\n'
       continue
     
     #Titulos
     if linha[0] == "#":
-      n_text += titulos(linha)
+      n_text += titulos(linha) +'\n'
 
-    if linha[0] == "*":
-      #bold
-      if len(linha) > 1 and linha[1] =="*":
-        n_text += bold(linha)
-      #italico
-      else:
-        n_text += italico(linha)
+    #Bold
+    if "**" in linha:
+      print(linha)
+      n_text += bold(linha) +'\n'
+    #Italico
+    elif "*" in linha:
+      n_text += italico(linha) +'\n'
+    
+    i+=1
   return n_text
 
 def main():
   with open(r'C:\Users\Cerqueira\OneDrive\Área de Trabalho\PL\regex.md', mode='r', encoding='utf-8') as file:
     text = file.read().splitlines()
-  print(markDownToHTML(text))
+  print("\nRESULTADO:\n" + markDownToHTML(text))
 
 main()
