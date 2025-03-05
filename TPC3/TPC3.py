@@ -85,7 +85,7 @@ def markDownToHTML(text):
   return n_text
 
 def main():
-  with open(r'C:\Users\Cerqueira\OneDrive\Área de Trabalho\PL\PL2025-A104188\regex.md', mode='r', encoding='utf-8') as file:
+  with open(r'C:\Users\Cerqueira\OneDrive\Área de Trabalho\PL\PL2025-A104188\regexResume.md', mode='r', encoding='utf-8') as file:
     text = file.read().splitlines()
   print("\nRESULTADO:\n" + markDownToHTML(text))
 
