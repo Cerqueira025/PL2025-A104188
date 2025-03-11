@@ -1,50 +1,50 @@
 [
-  {
-    "cod": "A23",
-    "nome": "água 0.5L",
-    "quant": 8,
-    "preco": 0.7
-  },
-  {
-    "cod": "B45",
-    "nome": "pão com queijo",
-    "quant": 3,
-    "preco": 0.8
-  },
-  {
-    "cod": "C12",
-    "nome": "sumo laranja 1L",
-    "quant": 5,
-    "preco": 1.5
-  },
-  {
-    "cod": "D34",
-    "nome": "bolacha chocolate",
-    "quant": 12,
-    "preco": 1.2
-  },
-  {
-    "cod": "E56",
-    "nome": "leite 1L",
-    "quant": 6,
-    "preco": 0.9
-  },
-  {
-    "cod": "F78",
-    "nome": "café expresso",
-    "quant": 20,
-    "preco": 0.6
-  },
-  {
-    "cod": "G90",
-    "nome": "chá verde",
-    "quant": 10,
-    "preco": 1.0
-  },
-  {
-    "cod": "H11",
-    "nome": "sandes de fiambre",
-    "quant": 4,
-    "preco": 2.0
-  }
+    {
+        "cod": "A23",
+        "nome": "água 0.5L",
+        "quant": 4,
+        "preco": 0.7
+    },
+    {
+        "cod": "B45",
+        "nome": "pão com queijo",
+        "quant": 3,
+        "preco": 0.8
+    },
+    {
+        "cod": "C12",
+        "nome": "sumo laranja 1L",
+        "quant": 5,
+        "preco": 1.5
+    },
+    {
+        "cod": "D34",
+        "nome": "bolacha chocolate",
+        "quant": 12,
+        "preco": 1.2
+    },
+    {
+        "cod": "E56",
+        "nome": "leite 1L",
+        "quant": 6,
+        "preco": 0.9
+    },
+    {
+        "cod": "F78",
+        "nome": "café expresso",
+        "quant": 20,
+        "preco": 0.6
+    },
+    {
+        "cod": "G90",
+        "nome": "chá verde",
+        "quant": 10,
+        "preco": 1.0
+    },
+    {
+        "cod": "H11",
+        "nome": "sandes de fiambre",
+        "quant": 4,
+        "preco": 2.0
+    }
 ]
