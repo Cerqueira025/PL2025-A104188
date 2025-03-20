@@ -1,0 +1,245 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> operacao
+Rule 1     operacao -> calc
+Rule 2     operacao -> operacao ADD calc
+Rule 3     operacao -> operacao SUB calc
+Rule 4     calc -> expressao
+Rule 5     calc -> calc MULT expressao
+Rule 6     calc -> calc DIV expressao
+Rule 7     expressao -> NUMBER
+Rule 8     expressao -> AP operacao FP
+
+Terminals, with rules where they appear
+
+ADD                  : 2
+AP                   : 8
+DIV                  : 6
+FP                   : 8
+MULT                 : 5
+NUMBER               : 7
+SUB                  : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+calc                 : 1 2 3 5 6
+expressao            : 4 5 6
+operacao             : 2 3 8 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . operacao
+    (1) operacao -> . calc
+    (2) operacao -> . operacao ADD calc
+    (3) operacao -> . operacao SUB calc
+    (4) calc -> . expressao
+    (5) calc -> . calc MULT expressao
+    (6) calc -> . calc DIV expressao
+    (7) expressao -> . NUMBER
+    (8) expressao -> . AP operacao FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    operacao                       shift and go to state 1
+    calc                           shift and go to state 2
+    expressao                      shift and go to state 3
+
+state 1
+
+    (0) S' -> operacao .
+    (2) operacao -> operacao . ADD calc
+    (3) operacao -> operacao . SUB calc
+
+    ADD             shift and go to state 6
+    SUB             shift and go to state 7
+
+
+state 2
+
+    (1) operacao -> calc .
+    (5) calc -> calc . MULT expressao
+    (6) calc -> calc . DIV expressao
+
+    ADD             reduce using rule 1 (operacao -> calc .)
+    SUB             reduce using rule 1 (operacao -> calc .)
+    $end            reduce using rule 1 (operacao -> calc .)
+    FP              reduce using rule 1 (operacao -> calc .)
+    MULT            shift and go to state 8
+    DIV             shift and go to state 9
+
+
+state 3
+
+    (4) calc -> expressao .
+
+    MULT            reduce using rule 4 (calc -> expressao .)
+    DIV             reduce using rule 4 (calc -> expressao .)
+    ADD             reduce using rule 4 (calc -> expressao .)
+    SUB             reduce using rule 4 (calc -> expressao .)
+    $end            reduce using rule 4 (calc -> expressao .)
+    FP              reduce using rule 4 (calc -> expressao .)
+
+
+state 4
+
+    (7) expressao -> NUMBER .
+
+    MULT            reduce using rule 7 (expressao -> NUMBER .)
+    DIV             reduce using rule 7 (expressao -> NUMBER .)
+    ADD             reduce using rule 7 (expressao -> NUMBER .)
+    SUB             reduce using rule 7 (expressao -> NUMBER .)
+    $end            reduce using rule 7 (expressao -> NUMBER .)
+    FP              reduce using rule 7 (expressao -> NUMBER .)
+
+
+state 5
+
+    (8) expressao -> AP . operacao FP
+    (1) operacao -> . calc
+    (2) operacao -> . operacao ADD calc
+    (3) operacao -> . operacao SUB calc
+    (4) calc -> . expressao
+    (5) calc -> . calc MULT expressao
+    (6) calc -> . calc DIV expressao
+    (7) expressao -> . NUMBER
+    (8) expressao -> . AP operacao FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    operacao                       shift and go to state 10
+    calc                           shift and go to state 2
+    expressao                      shift and go to state 3
+
+state 6
+
+    (2) operacao -> operacao ADD . calc
+    (4) calc -> . expressao
+    (5) calc -> . calc MULT expressao
+    (6) calc -> . calc DIV expressao
+    (7) expressao -> . NUMBER
+    (8) expressao -> . AP operacao FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    calc                           shift and go to state 11
+    expressao                      shift and go to state 3
+
+state 7
+
+    (3) operacao -> operacao SUB . calc
+    (4) calc -> . expressao
+    (5) calc -> . calc MULT expressao
+    (6) calc -> . calc DIV expressao
+    (7) expressao -> . NUMBER
+    (8) expressao -> . AP operacao FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    calc                           shift and go to state 12
+    expressao                      shift and go to state 3
+
+state 8
+
+    (5) calc -> calc MULT . expressao
+    (7) expressao -> . NUMBER
+    (8) expressao -> . AP operacao FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    expressao                      shift and go to state 13
+
+state 9
+
+    (6) calc -> calc DIV . expressao
+    (7) expressao -> . NUMBER
+    (8) expressao -> . AP operacao FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    expressao                      shift and go to state 14
+
+state 10
+
+    (8) expressao -> AP operacao . FP
+    (2) operacao -> operacao . ADD calc
+    (3) operacao -> operacao . SUB calc
+
+    FP              shift and go to state 15
+    ADD             shift and go to state 6
+    SUB             shift and go to state 7
+
+
+state 11
+
+    (2) operacao -> operacao ADD calc .
+    (5) calc -> calc . MULT expressao
+    (6) calc -> calc . DIV expressao
+
+    ADD             reduce using rule 2 (operacao -> operacao ADD calc .)
+    SUB             reduce using rule 2 (operacao -> operacao ADD calc .)
+    $end            reduce using rule 2 (operacao -> operacao ADD calc .)
+    FP              reduce using rule 2 (operacao -> operacao ADD calc .)
+    MULT            shift and go to state 8
+    DIV             shift and go to state 9
+
+
+state 12
+
+    (3) operacao -> operacao SUB calc .
+    (5) calc -> calc . MULT expressao
+    (6) calc -> calc . DIV expressao
+
+    ADD             reduce using rule 3 (operacao -> operacao SUB calc .)
+    SUB             reduce using rule 3 (operacao -> operacao SUB calc .)
+    $end            reduce using rule 3 (operacao -> operacao SUB calc .)
+    FP              reduce using rule 3 (operacao -> operacao SUB calc .)
+    MULT            shift and go to state 8
+    DIV             shift and go to state 9
+
+
+state 13
+
+    (5) calc -> calc MULT expressao .
+
+    MULT            reduce using rule 5 (calc -> calc MULT expressao .)
+    DIV             reduce using rule 5 (calc -> calc MULT expressao .)
+    ADD             reduce using rule 5 (calc -> calc MULT expressao .)
+    SUB             reduce using rule 5 (calc -> calc MULT expressao .)
+    $end            reduce using rule 5 (calc -> calc MULT expressao .)
+    FP              reduce using rule 5 (calc -> calc MULT expressao .)
+
+
+state 14
+
+    (6) calc -> calc DIV expressao .
+
+    MULT            reduce using rule 6 (calc -> calc DIV expressao .)
+    DIV             reduce using rule 6 (calc -> calc DIV expressao .)
+    ADD             reduce using rule 6 (calc -> calc DIV expressao .)
+    SUB             reduce using rule 6 (calc -> calc DIV expressao .)
+    $end            reduce using rule 6 (calc -> calc DIV expressao .)
+    FP              reduce using rule 6 (calc -> calc DIV expressao .)
+
+
+state 15
+
+    (8) expressao -> AP operacao FP .
+
+    MULT            reduce using rule 8 (expressao -> AP operacao FP .)
+    DIV             reduce using rule 8 (expressao -> AP operacao FP .)
+    ADD             reduce using rule 8 (expressao -> AP operacao FP .)
+    SUB             reduce using rule 8 (expressao -> AP operacao FP .)
+    $end            reduce using rule 8 (expressao -> AP operacao FP .)
+    FP              reduce using rule 8 (expressao -> AP operacao FP .)
+
